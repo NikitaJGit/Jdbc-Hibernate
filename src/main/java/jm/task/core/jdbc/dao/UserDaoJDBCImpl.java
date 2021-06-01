@@ -39,12 +39,12 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        final String INSERT = "INSERT INTO user (name, lastname, age) VALUES (?,?,?)";
+        final String INSERT = "INSERT INTO user (name, lastname, age) VALUES (?,?,?);";
         try (PreparedStatement preparedStatement = Util.getConnection().prepareStatement(INSERT)){
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
             preparedStatement.setInt(3, age);
-            preparedStatement.executeUpdate();
+            preparedStatement.execute();
         } catch (SQLException throwables) {
             System.out.println("Что-то пошло не так");
         }
